@@ -1,59 +1,99 @@
-# SsplShoppingCart
+# SSPL Shopping Cart Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+A Shopping Cart web application built using **Angular (Standalone Components)** and **NgRx** to demonstrate state management, scalable architecture, and best practices.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Tech Stack
 
+- Angular 20
+- NgRx (Store, Actions, Reducers, Selectors, Effects)
+- RxJS
+- Angular Router
+- SCSS
+- FakeStore API (https://fakestoreapi.com)
+
+---
+
+## 📦 Application Features
+
+### Product Listing
+- Fetches products from FakeStore API using **NgRx Effects**
+- Displays product image, title, and price
+- Add to Cart functionality
+- Loader shown during API delay
+
+### Shopping Cart
+- Add product to cart
+- Increase / Decrease quantity
+- Remove item from cart
+- Clear cart
+- Display total price and item count
+- User-friendly empty cart screen
+
+### State Management (NgRx)
+- **Products State**
+  - Load, Success, Failure
+- **Cart State**
+  - Add, Remove, Update Quantity, Clear
+- Selectors for derived data (cart count, total price)
+- Strong typing (no `any` used)
+
+### UX Enhancements
+- Sticky header with cart count badge
+- Subtle badge animation on cart update
+- Responsive product cards with hover effects
+- Button disabled briefly to prevent multiple clicks
+
+### Bonus Features
+- Cart state persisted in `localStorage`
+- Cart count displayed in header
+
+---
+
+## 🗂️ Project Structure
+
+src/app
+├── features
+│ ├── products
+│ │ ├── product-list
+│ │ └── store
+│ └── cart
+│ ├── cart
+│ └── store
+├── shared
+│ └── components
+│ └── header
+├── app.routes.ts
+├── app.config.ts
+└── main.ts
+
+
+---
+
+## 🔄 NgRx Flow (Example: Products)
+
+1. ProductList component dispatches `loadProducts`
+2. ProductsEffect calls FakeStore API
+3. On success, `loadProductsSuccess` action is dispatched
+4. Reducer updates store state
+5. UI reacts automatically via selectors and signals
+
+---
+
+## 🛠️ Setup Instructions
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- Angular CLI
+
+### Steps to Run
 ```bash
+npm install
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+http://localhost:4200
 
-## Code scaffolding
+API Used
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Fetch products: https://fakestoreapi.com/products
