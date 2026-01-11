@@ -1,0 +1,31 @@
+<h2 class="cart-title">Shopping Cart ({{ count() }} items)</h2>
+
+<div *ngIf="items().length === 0" class="empty-cart">
+  <h3>Your cart is empty 🛒</h3>
+  <p>Add items to see them here.</p>
+  <a routerLink="/product-list" class="shop-btn">Continue Shopping</a>
+</div>
+
+<div *ngIf="items().length > 0" class="cart-container">
+  <div class="cart-item" *ngFor="let item of items()">
+    <img [src]="item.product.image" alt="" />
+
+    <div class="item-details">
+      <h4>{{ item.product.title }}</h4>
+      <p class="price">₹ {{ item.product.price }}</p>
+
+      <div class="quantity-controls">
+        <button (click)="dec(item.product.id)">−</button>
+        <span>{{ item.quantity }}</span>
+        <button (click)="inc(item.product.id)">+</button>
+      </div>
+    </div>
+
+    <button class="remove-btn" (click)="remove(item.product.id)">✕</button>
+  </div>
+
+  <div class="cart-summary">
+    <h3>Total: ₹ {{ total() }}</h3>
+    <button class="clear-btn" (click)="clear()">Clear Cart</button>
+  </div>
+</div>

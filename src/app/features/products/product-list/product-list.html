@@ -1,0 +1,21 @@
+<div *ngIf="loading()" class="loader">
+    <div class="spinner"></div>
+    <p>Loading products...</p>
+</div>
+
+
+<div class="products" *ngIf="!loading()">
+    <div class="product-card" *ngFor="let product of products()">
+        <img [src]="product.image" alt="{{ product.title }}" />
+
+        <div class="product-info">
+            <h3>{{ product.title }}</h3>
+            <p class="price">₹ {{ product.price }}</p>
+        </div>
+
+        <button [disabled]="adding() === product.id" (click)="addToCart(product)">
+            {{ adding() === product.id ? 'Adding...' : 'Add to Cart' }}
+        </button>
+
+    </div>
+</div>
